@@ -50,6 +50,26 @@ public function registerModules()
 }
 ```
 
+```
+'components' => [
+    'request' => [
+        'class' => 'krok\language\components\LangRequest',
+    ],
+    'urlManager' => [
+        'class' => 'krok\language\components\LangUrlManager',
+        'enablePrettyUrl' => true,
+        'showScriptName' => false,
+        'suffix' => '.html',
+        'enableStrictParsing' => false,
+        'rules' => [
+            '<language:\w+\-\w+>' => '/',
+            '<language:\w+\-\w+>/<controller:\w+>' => '<controller>',
+            '<language:\w+\-\w+>/<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+        ],
+    ],
+]
+```
+
 Usage
 -----
 
