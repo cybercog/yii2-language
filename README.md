@@ -39,17 +39,19 @@ Add to config file (config/web.php or common\config\main.php)
 ],
 ```
 
-register modules for Cp modules ( @vendor\krok\cp\Cp.php )
+register modules
 
 ```
-public function registerModules()
-{
-    $this->modules = [
-        'language' => [
-            'class' => 'krok\language\Manage',
+'modules' => [
+        'cp' => [
+            'class' => 'krok\cp\Cp',
+            'modules' => [
+                'language' => [
+                    'class' => 'krok\language\Manage',
+                ],
+            ],
         ],
-    ];
-}
+],
 ```
 
 ```
