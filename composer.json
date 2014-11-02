@@ -12,7 +12,6 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "krok/yii2-language": "dev-master",
         "krok/yii2-cp": "dev-master"
     },
     "autoload": {
