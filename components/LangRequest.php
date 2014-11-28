@@ -2,7 +2,7 @@
 
 namespace krok\language\components;
 
-use yii;
+use Yii;
 use yii\web\Request;
 use yii\helpers\ArrayHelper;
 use krok\language\models\Language;
@@ -17,11 +17,11 @@ class LangRequest extends Request
         $pattern = [];
         $resolveRequestUri = parent::resolveRequestUri();
 
-        if (yii::$app->getUrlManager()->enablePrettyUrl === true) {
-            $pattern[] = '/' . preg_replace('/\//', '\/', yii::$app->getUrlManager()->suffix) . '/';
+        if (Yii::$app->getUrlManager()->enablePrettyUrl === true) {
+            $pattern[] = '/' . preg_replace('/\//', '\/', Yii::$app->getUrlManager()->suffix) . '/';
         }
 
-        if (yii::$app->getUrlManager()->showScriptName === true) {
+        if (Yii::$app->getUrlManager()->showScriptName === true) {
             $pattern[] = '/' . preg_replace('/\//', '\/', $this->getScriptUrl()) . '/';
         }
 

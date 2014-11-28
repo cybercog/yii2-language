@@ -2,7 +2,7 @@
 
 namespace krok\language;
 
-use yii;
+use Yii;
 
 class Language extends \yii\base\Module implements \yii\base\BootstrapInterface
 {
@@ -26,7 +26,24 @@ class Language extends \yii\base\Module implements \yii\base\BootstrapInterface
     {
         $app->getUrlManager()->addRules(
             [
+                '<language:\w+\-\w+>/cp/' . $this->id => 'cp/' . $this->id,
+                '<language:\w+\-\w+>/cp/' . $this->id . '/<controller:\w+>' => 'cp/' . $this->id . '/<controller>',
                 '<language:\w+\-\w+>/cp/' . $this->id . '/<controller:\w+>/<action:\w+>' => 'cp/' . $this->id . '/<controller>/<action>',
+            ],
+            false
+        );
+        $app->getUrlManager()->addRules(
+            [
+                '<language:\w+\-\w+>/debug' => 'debug',
+                '<language:\w+\-\w+>/debug/<controller:\w+>/<action:\w+>' => 'debug/<controller>/<action>',
+            ],
+            false
+        );
+        $app->getUrlManager()->addRules(
+            [
+                '<language:\w+\-\w+>/gii' => 'gii/default/index',
+                '<language:\w+\-\w+>/gii/<id:\w+>' => 'gii/default/view',
+                '<language:\w+\-\w+>/gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
             ],
             false
         );
@@ -34,7 +51,7 @@ class Language extends \yii\base\Module implements \yii\base\BootstrapInterface
 
     public function registerTranslations()
     {
-        yii::$app->i18n->translations[$this->id] = [
+        Yii::$app->i18n->translations[$this->id] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
             'basePath' => '@krok/language/messages',

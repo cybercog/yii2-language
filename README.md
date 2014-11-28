@@ -23,26 +23,26 @@ to the require section of your `composer.json` file.
 Configure
 -----------------
 
-Add to config file (config/web.php or common\config\main.php)
+Add to config file (config/web.php or common/config/main.php)
 
 ```
-'bootstrap' => [
-    'language',
-],
+    'bootstrap' => [
+        'language',
+    ],
 ```
 
 ```
-'modules' => [
+    'modules' => [
         'language' => [
             'class' => 'krok\language\Language',
         ],
-],
+    ],
 ```
 
 register modules
 
 ```
-'modules' => [
+    'modules' => [
         'cp' => [
             'class' => 'krok\cp\Cp',
             'modules' => [
@@ -51,27 +51,39 @@ register modules
                 ],
             ],
         ],
-],
+    ],
 ```
 
 ```
-'components' => [
-    'request' => [
-        'class' => 'krok\language\components\LangRequest',
-    ],
-    'urlManager' => [
-        'class' => 'krok\language\components\LangUrlManager',
-        'enablePrettyUrl' => true,
-        'showScriptName' => false,
-        'suffix' => '.html',
-        'enableStrictParsing' => false,
-        'rules' => [
-            '<language:\w+\-\w+>' => '/',
-            '<language:\w+\-\w+>/<controller:\w+>' => '<controller>',
-            '<language:\w+\-\w+>/<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+    'components' => [
+        'request' => [
+            'class' => 'krok\language\components\LangRequest',
+        ],
+        'urlManager' => [
+            'class' => 'krok\language\components\LangUrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'suffix' => '.html',
+            'enableStrictParsing' => false,
         ],
     ],
-]
+```
+
+Add to config file (config/params.php or common/config/params.php)
+
+```
+    'nav' => [
+        [
+            'label' => ['category' => 'cp', 'context' => 'Administration'],
+            'items' => [
+                [
+                    'label' => ['category' => 'language', 'context' => 'Language'],
+                    'url' => ['/cp/language'],
+                ],
+                '<li class="divider"></li>',
+            ],
+        ],
+    ],
 ```
 
 Usage

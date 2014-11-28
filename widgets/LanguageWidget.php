@@ -2,7 +2,7 @@
 
 namespace krok\language\widgets;
 
-use yii;
+use Yii;
 use yii\base\Widget;
 use yii\bootstrap\Nav;
 use yii\helpers\ArrayHelper;
@@ -32,14 +32,18 @@ class LanguageWidget extends Widget
     {
         $list = [];
 
+        list($route, $params) = Yii::$app->getUrlManager()->parseRequest(Yii::$app->getRequest());
+        $params = ArrayHelper::merge($_GET, $params);
+        $url = isset($params['route']) ? $params['route'] : $route;
+
         foreach ($this->languages as $row) {
             $list = ArrayHelper::merge(
                 $list,
                 [
                     [
                         'label' => $row['title'],
-                        'url' => yii::$app->urlManager->createUrl(
-                                [yii::$app->requestedRoute, 'language' => $row['iso']]
+                        'url' => Yii::$app->urlManager->createUrl(
+                                ArrayHelper::merge($params, [$url, 'language' => $row['iso']])
                             ),
                     ],
                 ]

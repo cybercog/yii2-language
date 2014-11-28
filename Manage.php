@@ -2,7 +2,9 @@
 
 namespace krok\language;
 
-class Manage extends \yii\base\Module
+use krok\cp\components\Module;
+
+class Manage extends Module
 {
     /**
      * @var string

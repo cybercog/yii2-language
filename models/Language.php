@@ -36,6 +36,7 @@ class Language extends \yii\db\ActiveRecord
             [['title'], 'string', 'max' => 16],
             [['iso'], 'string', 'max' => 8],
             [['title', 'iso'], 'required'],
+            [['iso'], 'unique'],
         ];
     }
 
@@ -67,7 +68,7 @@ class Language extends \yii\db\ActiveRecord
      */
     public static function getCurrent()
     {
-        return yii::$app->language;
+        return Yii::$app->language;
     }
 
     /**
@@ -75,7 +76,7 @@ class Language extends \yii\db\ActiveRecord
      */
     public static function setCurrent($language)
     {
-        yii::$app->language = $language;
+        Yii::$app->language = $language;
     }
 
     /**
