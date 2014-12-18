@@ -7,14 +7,15 @@ class m141128_145402_language extends Migration
 {
     public function safeUp()
     {
+        $options = ($this->db->getDriverName() === 'mysql') ? 'ENGINE=InnoDB DEFAULT CHARSET=utf8' : null;
         $this->createTable(
             '{{%language}}',
             [
-                'id' => 'int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY',
-                'title' => 'varchar(16) NOT NULL DEFAULT \'\'',
-                'iso' => 'varchar(8) NOT NULL DEFAULT \'\'',
+                'id' => Schema::TYPE_PK,
+                'title' => Schema::TYPE_STRING . '(16) NOT NULL DEFAULT \'\'',
+                'iso' => Schema::TYPE_STRING . '(8) NOT NULL DEFAULT \'\'',
             ],
-            'ENGINE=InnoDB DEFAULT CHARSET=utf8'
+            $options
         );
         $this->createIndex('iso', '{{%language}}', ['iso'], true);
 
