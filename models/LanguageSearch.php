@@ -57,7 +57,8 @@ class LanguageSearch extends Language
             ]
         );
 
-        $query->andFilterWhere(['like', 'title', $this->title])
+        $query
+            ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'iso', $this->iso]);
 
         return $dataProvider;

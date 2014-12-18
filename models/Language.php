@@ -57,7 +57,7 @@ class Language extends \yii\db\ActiveRecord
      */
     public static function listing()
     {
-        if (self::$_languages === []) {
+        if (self::$_languages == []) {
             self::$_languages = self::find()->asArray()->all();
         }
         return self::$_languages;
